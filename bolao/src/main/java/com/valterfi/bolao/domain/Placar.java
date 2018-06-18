@@ -14,6 +14,13 @@ public class Placar {
 		return new Placar(gols1, gols2);
 	}
 	
+	public Placar(String time1, String time2, Integer gols1, Integer gols2) {
+		this.time1 = time1;
+		this.time2 = time2;
+		this.gols1 = gols1;
+		this.gols2 = gols2;
+	}
+
 	public Placar(Integer gols1, Integer gols2) {
 		this.gols1 = gols1;
 		this.gols2 = gols2;
