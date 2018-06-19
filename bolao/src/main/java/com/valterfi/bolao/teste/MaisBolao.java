@@ -58,15 +58,21 @@ public class MaisBolao {
 
 		WebDriver webDriver = null;
 
-		DesiredCapabilities caps = new DesiredCapabilities();
+		/*DesiredCapabilities caps = new DesiredCapabilities();
 		caps.setJavascriptEnabled(true);
 
+		// LINUX
 		caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[] { "--web-security=false",
 				"--ssl-protocol=any", "--ignore-ssl-errors=true", "--webdriver-loglevel=INFO" });
 
 		PhantomJSDriverService service = new PhantomJSDriverService.Builder().usingPort(8080)
-				.usingPhantomJSExecutable(new File("src/main/resource/phantomjs")).build();
-		webDriver = new PhantomJSDriver(service, caps);
+				.usingPhantomJSExecutable(new File("src/main/resource/phantomjs")).build();)
+		webDriver = new PhantomJSDriver(service, caps);*/
+		
+		// WINDOWS
+		File file = new File("src/main/resource/phantomjs-2.1.1-windows/bin/phantomjs.exe");				
+        System.setProperty("phantomjs.binary.path", file.getAbsolutePath());		
+        webDriver = new PhantomJSDriver();	
 
 		webDriver.navigate().to("http://www.maisbolao.com.br/bolao/classificacao/15582/copa-dos-caldeiras");
 		
