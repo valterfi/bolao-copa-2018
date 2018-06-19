@@ -21,6 +21,9 @@ public class Jogador {
 	}
 
 	public Placar getChute() {
+		if(this.chute == null) {
+			return new Placar();
+		}
 		return chute;
 	}
 

@@ -8,14 +8,14 @@ public class Simulacao {
 	
 	private int peso = 1;
 	
-	private Placar chute;
+	private Placar correto;
 	
 	private List<Jogador> jogadores = JogadorUtil.criarJogadores();
 
-	public Simulacao(int peso, Placar chute, List<Jogador> jogadores) {
+	public Simulacao(int peso, Placar correto, List<Jogador> jogadores) {
 		super();
 		this.peso = peso;
-		this.chute = chute;
+		this.correto = correto;
 		this.jogadores = jogadores;
 	}
 
@@ -27,15 +27,18 @@ public class Simulacao {
 		this.peso = peso;
 	}
 
-	public Placar getChute() {
-		return chute;
+	public Placar getCorreto() {
+		return correto;
 	}
 
-	public void setChute(Placar chute) {
-		this.chute = chute;
+	public void setCorreto(Placar correto) {
+		this.correto = correto;
 	}
 
 	public List<Jogador> getJogadores() {
+		if(jogadores == null) {
+			return JogadorUtil.criarJogadores();
+		}
 		return jogadores;
 	}
 
