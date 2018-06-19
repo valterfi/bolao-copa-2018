@@ -10,6 +10,8 @@ public class Placar {
 	
 	private Integer gols2;
 	
+	private int pontos = 0;
+	
 	public static Placar palpitar(Integer gols1, Integer gols2) {
 		return new Placar(gols1, gols2);
 	}
@@ -107,6 +109,14 @@ public class Placar {
 		} else if (!gols2.equals(other.gols2))
 			return false;
 		return true;
+	}
+
+	public int getPontos() {
+		return pontos;
+	}
+
+	public void setPontos(int pontos) {
+		this.pontos = pontos;
 	}
 	
 }

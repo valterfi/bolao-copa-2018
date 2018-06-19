@@ -72,17 +72,17 @@ public class BolaoTest {
 	@Test
 	public void calcularPontosRodada1PortugalEspanhaTest() {
 		
-		Placar correto = new Placar(3, 3);
-		int peso = 11;
+		Placar correto = new Placar(1, 2);
+		int peso = 15;
 		
-		calcularPontosPorJogador(correto, Placar.palpitar(1,2), peso, "Oton");
-		calcularPontosPorJogador(correto, Placar.palpitar(1,1), peso, "Pedro Paiva");
-		calcularPontosPorJogador(correto, Placar.palpitar(0,1), peso, "Ed");
-		calcularPontosPorJogador(correto, Placar.palpitar(1,1), peso, "Nicolas");
+		calcularPontosPorJogador(correto, Placar.palpitar(2,0), peso, "Oton");
+		calcularPontosPorJogador(correto, Placar.palpitar(0,1), peso, "Pedro Paiva");
+		calcularPontosPorJogador(correto, Placar.palpitar(1,0), peso, "Ed");
+		calcularPontosPorJogador(correto, Placar.palpitar(1,0), peso, "Nicolas");
 		calcularPontosPorJogador(correto, Placar.palpitar(1,0), peso, "Do Vale");
-		calcularPontosPorJogador(correto, Placar.palpitar(2,1), peso, "Teixeira");
-		calcularPontosPorJogador(correto, Placar.palpitar(3,1), peso, "Robson");
-		calcularPontosPorJogador(correto, Placar.palpitar(2,4), peso, "Valterfi");
+		calcularPontosPorJogador(correto, Placar.palpitar(2,0), peso, "Teixeira");
+		calcularPontosPorJogador(correto, Placar.palpitar(2,1), peso, "Robson");
+		calcularPontosPorJogador(correto, Placar.palpitar(1,0), peso, "Valterfi");
 		
 	}
 

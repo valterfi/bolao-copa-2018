@@ -14,16 +14,19 @@ public class DataBaseDAO {
 	@Autowired
 	private Database database;
 	
-	public Simulacao add(Simulacao simulacao) {
+	public Integer add(Simulacao simulacao) {
 		
+		Integer id = null;
 		Map<Integer, Simulacao> datas = database.getData();
 		if(datas.isEmpty()) {
-			datas.put(1, simulacao);
+			id = 1;
+			datas.put(id, simulacao);
 		} else {
-			datas.put(datas.size()+1, simulacao);
+			id = datas.size()+1;
+			datas.put(id, simulacao);
 		}
 		
-		return simulacao;
+		return id;
 	}
 	
 	public Simulacao get(Integer id) {
