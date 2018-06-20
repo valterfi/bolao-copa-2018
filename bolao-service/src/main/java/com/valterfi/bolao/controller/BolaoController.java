@@ -6,6 +6,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.valterfi.bolao.dao.DataBaseDAO;
 import com.valterfi.bolao.domain.Classificacao;
+import com.valterfi.bolao.domain.ClassificacaoJson;
 import com.valterfi.bolao.domain.Jogador;
 import com.valterfi.bolao.domain.Placar;
 import com.valterfi.bolao.domain.Simulacao;
@@ -79,10 +83,18 @@ public class BolaoController {
     @GetMapping("/simular/{id}")
     public String simular(Model model, @PathVariable("id") Integer id) {
     	Simulacao simulacao = dataBaseDAO.get(id);
-    	List<Classificacao> classificacaoList = bolaoService.retornaClassificacaoAtual(simulacao);
+    	//List<Classificacao> classificacaoList = bolaoService.retornaClassificacaoAtual(simulacao);
      	model.addAttribute("simulacao", simulacao);
-    	model.addAttribute("classificacaoList", classificacaoList);
+    	//model.addAttribute("classificacaoList", classificacaoList);
     	model.addAttribute("id", id);
         return "simular";
+    }
+    
+    @GetMapping(path = "/classificacao/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<ClassificacaoJson> getClassificacao(@PathVariable("id") Integer id) {
+    	Simulacao simulacao = dataBaseDAO.get(id);
+    	List<Classificacao> classificacaoList = bolaoService.retornaClassificacaoAtual(simulacao);
+    	ClassificacaoJson json = new ClassificacaoJson(classificacaoList);
+    	return new ResponseEntity<ClassificacaoJson>(json, HttpStatus.OK);
     }
 }

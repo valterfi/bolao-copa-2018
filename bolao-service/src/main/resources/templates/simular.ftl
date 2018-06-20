@@ -14,7 +14,33 @@
 	.search-input {
 	    border-right: 0;
 	}
+	div.container { max-width: 500px }
 </style>
+
+<script>
+	$(document).ready(function() {
+	
+	    $('#example').DataTable( {
+	        "ajax": "${rc.getContextPath()}/classificacao/${id}",
+	        "columns": [
+	            { "data": "nome" },
+	            { "data": "total" },
+	            { "data": "acertouPlacar" },
+	            { "data": "golsVencedor" },
+	            { "data": "saldoGols" },
+	            { "data": "golsPerdedor" },
+	            { "data": "acertouVencedor" },
+	            { "data": "empateGarantido" }
+	        ]
+	    } );
+	    
+	} );
+</script>
+
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.dataTables.min.css">
 
 <body>
     <h2 class="hello-title">SIMULAR!</h2>
@@ -52,13 +78,34 @@
 			</div>
 		</div>
 			
-		<div class="form-group">
-            <div class="col-sm-offset-2 col-sm-9">
-                <button id="save" type="submit" class="btn btn-default btn-primary">
-                	Salvar
-                </button>
-            </div>
-        </div>
+		<div id="example_wrapper" class="dataTables_wrapper">
+		<table id="example" class="display responsive nowrap" style="width:100%">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Total</th>
+                <th>Acertou Placar</th>
+                <th>Gols Vencedor</th>
+                <th>Saldo Gols</th>
+                <th>Gols Perdedor</th>
+                <th>Acertou Vencedor</th>
+                <th>Empate Garantido</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Nome</th>
+                <th>Total</th>
+                <th>Acertou Placar</th>
+                <th>Gols Vencedor</th>
+                <th>Saldo Gols</th>
+                <th>Gols Perdedor</th>
+                <th>Acertou Vencedor</th>
+                <th>Empate Garantido</th>
+            </tr>
+        </tfoot>
+    </table>
+    </div>
 
     </form>
             
