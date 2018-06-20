@@ -59,7 +59,7 @@ public class MaisBolao {
 		caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[] { "--web-security=false",
 				"--ssl-protocol=any", "--ignore-ssl-errors=true", "--webdriver-loglevel=INFO" });
 
-		PhantomJSDriverService service = new PhantomJSDriverService.Builder().usingPort(8080)
+		PhantomJSDriverService service = new PhantomJSDriverService.Builder().usingPort(8082)
 				.usingPhantomJSExecutable(new File("src/main/resources/phantomjs")).build();
 		webDriver = new PhantomJSDriver(service, caps);
 		

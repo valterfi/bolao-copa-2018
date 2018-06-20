@@ -43,17 +43,38 @@
 </script>
 
 <body>
-    <h2 class="hello-title">SIMULAR!</h2>
+    <center style="padding-right:763px"><h2 class="hello-title">SIMULAR</h2></center>
+    <br/>
     
     <form action="/form" method="post">
 	    <div class="form-group">
 		    <div class="container-fluid">
 		    	<div class="row">
 		    		<div class="col-sm-2" style="text-align:right">
+				        <b>${(placarAtual.time1)!"time1"}</b>
+				    </div>
+			    	<div class="col-sm-1">
+			        	<input class="form-control" style="text-align:center" id="gols1" value="${(placarAtual.gols1)!}" disabled>
+			    	</div>
+			    	<div class="col-sm-1" style="padding-top:7px">
+			        	<p class="search-input" style="text-align:center">x</p>
+			    	</div>
+			    	<div class="col-sm-1">
+			        	<input class="form-control" style="text-align:center" name="gols2" value="${(placarAtual.gols2)!}" disabled>
+			    	</div>
+			    	<div class="col-sm-1" style="padding-top:7px">
+			    		 <b>${(placarAtual.time2)!"time2"}</b>
+			    	</div>
+		    	</div>
+		    	<br/>
+		    	<div class="row">
+		    		<div class="col-sm-1">
+			    	</div>
+		    		<div class="col-sm-2" style="text-align:right">
 				        	Peso
 				    </div>
 			    	<div class="col-sm-1">
-			        	<input class="form-control" style="text-align:center" name="peso" id="peso" value="${(simulacao.peso)!}">
+			        	<input class="form-control" style="text-align:center" name="peso" id="peso" value="${(simulacao.peso)!}" disabled>
 			    	</div>
 		    	</div>
 		    	<br/>
@@ -65,16 +86,16 @@
 				        	<input type="hidden" name="nomeJogador${indice}" value="${(jogador.nome)!}" />
 				    	</div>
 						<div class="col-sm-1">
-				        	<input class="form-control" style="text-align:center" name="jogador${indice}Gols1" value="${(jogador.chute.gols1)!}">
+				        	<input class="form-control" style="text-align:center" name="jogador${indice}Gols1" value="${(jogador.chute.gols1)!}" disabled>
 				    	</div>
 				    	<div class="col-sm-1" style="padding-top:7px">
 				        	<p class="search-input" style="text-align:center">x</p>
 				    	</div>
 				    	<div class="col-sm-1">
-				        	<input class="form-control" style="text-align:center" name="jogador${indice}Gols2" value="${(jogador.chute.gols2)!}">
+				        	<input class="form-control" style="text-align:center" name="jogador${indice}Gols2" value="${(jogador.chute.gols2)!}" disabled>
 				    	</div>
 				    	<div class="col-sm-1" style="padding-top:7px">
-				    		${(jogador.pontos)!} pontos
+				    		${(jogador.pontos.pontos)!} pontos ${(jogador.pontos.tipoPonto)!}
 				    	</div>
 				    </div>
 				</#list>

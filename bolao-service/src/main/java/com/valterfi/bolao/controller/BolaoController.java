@@ -1,6 +1,5 @@
 package com.valterfi.bolao.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -22,7 +21,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import com.valterfi.bolao.dao.DataBaseDAO;
 import com.valterfi.bolao.domain.Classificacao;
 import com.valterfi.bolao.domain.ClassificacaoJson;
-import com.valterfi.bolao.domain.Jogador;
 import com.valterfi.bolao.domain.Placar;
 import com.valterfi.bolao.domain.Simulacao;
 import com.valterfi.bolao.domain.SimulacaoForm;
@@ -67,16 +65,38 @@ public class BolaoController {
     @GetMapping("/simular/{id}")
     public String simular(Model model, @PathVariable("id") Integer id) {
     	Simulacao simulacao = dataBaseDAO.get(id);
-    	bolaoService.calcularPontos(simulacao);
-     	model.addAttribute("simulacao", simulacao);
-    	model.addAttribute("id", id);
-        return "simular";
+    	if(simulacao != null) {
+	    	Placar placarAtual = bolaoService.getPlacarAtual();
+	    	bolaoService.calcularPontos(simulacao, placarAtual);
+	    	model.addAttribute("placarAtual", placarAtual);
+	     	model.addAttribute("simulacao", simulacao);
+	    	model.addAttribute("id", id);
+	        return "simular";
+    	}
+    	return "index";
+    }
+    
+    @GetMapping("/simular/{id}/{gols1}/{gols2}")
+    public String simular(Model model, @PathVariable("id") Integer id, @PathVariable("gols1") Integer gols1, @PathVariable("gols2") Integer gols2) {
+    	Simulacao simulacao = dataBaseDAO.get(id);
+    	if(simulacao != null) {
+	    	Placar placarExemplo = Placar.palpitar(gols1, gols2);
+	    	placarExemplo.setTime1("exemploTime1");
+	    	placarExemplo.setTime2("exemploTime2");
+	    	bolaoService.calcularPontos(simulacao, placarExemplo);
+	    	model.addAttribute("placarAtual", placarExemplo);
+	     	model.addAttribute("simulacao", simulacao);
+	    	model.addAttribute("id", id);
+	        return "simular";
+    	}
+    	return "index";
     }
     
     @GetMapping(path = "/classificacao/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<ClassificacaoJson> getClassificacao(@PathVariable("id") Integer id) {
     	Simulacao simulacao = dataBaseDAO.get(id);
     	List<Classificacao> classificacaoList = bolaoService.retornaClassificacaoAtual(simulacao);
+    	bolaoService.calcularClassificacaoAtual(classificacaoList, simulacao);
     	ClassificacaoJson json = new ClassificacaoJson(classificacaoList);
     	return new ResponseEntity<ClassificacaoJson>(json, HttpStatus.OK);
     }

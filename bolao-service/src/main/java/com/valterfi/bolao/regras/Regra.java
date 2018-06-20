@@ -1,9 +1,10 @@
 package com.valterfi.bolao.regras;
 
 import com.valterfi.bolao.domain.Placar;
+import com.valterfi.bolao.domain.Pontos;
 
 public interface Regra {
 	
-	int executar(Placar correto, Placar chute, int peso);
+	Pontos executar(Placar correto, Placar chute, int peso);
 
 }

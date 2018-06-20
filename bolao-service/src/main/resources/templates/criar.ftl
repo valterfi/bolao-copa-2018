@@ -17,17 +17,20 @@
 </style>
 
 <body>
-    <h2 class="hello-title">Criar simulação!</h2>
+    <center style="padding-right:763px"><h2 class="hello-title">CRIAR SIMULAÇÃO</h2></center>
+    <br/>
     
     <form action="/form" method="post">
 	    <div class="form-group">
 		    <div class="container-fluid">
 		    	<div class="row">
+		    		<div class="col-sm-1">
+			    	</div>
 		    		<div class="col-sm-2" style="text-align:right">
 				        	Peso
 				    </div>
 			    	<div class="col-sm-1">
-			        	<input class="form-control" style="text-align:center" name="peso" id="peso" value="1">
+			        	<input type="number" class="form-control" style="text-align:center" name="peso" id="peso" value="${(simulacao.peso)!}">
 			    	</div>
 		    	</div>
 		    	<br/>
@@ -39,13 +42,13 @@
 				        	<input type="hidden" name="nomeJogador${indice}" value="${(jogador.nome)!}" />
 				    	</div>
 						<div class="col-sm-1">
-				        	<input class="form-control" style="text-align:center" name="jogador${indice}Gols1">
+				        	<input type="number" class="form-control" style="text-align:center" name="jogador${indice}Gols1">
 				    	</div>
 				    	<div class="col-sm-1">
 				        	<p class="search-input" style="text-align:center">x</p>
 				    	</div>
-				    	<div class="col-sm-1">
-				        	<input class="form-control" style="text-align:center" name="jogador${indice}Gols2">
+				    	<div class="col-sm-1" style="padding-top:7px">
+				        	<input type="number" class="form-control" style="text-align:center" name="jogador${indice}Gols2">
 				    	</div>
 				    </div>
 				</#list>

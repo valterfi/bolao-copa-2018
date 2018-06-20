@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.valterfi.bolao.domain.Placar;
+import com.valterfi.bolao.domain.Pontos;
 import com.valterfi.bolao.regras.Regra;
 
 public class Contexto {
@@ -20,12 +21,12 @@ public class Contexto {
 		this.regras = regras;
 	}
 	
-	public int calcularRodada(int peso) {
-		int calculo = 0;
+	public Pontos calcularRodada(int peso) {
+		Pontos calculo = Pontos.ZERO;
 		
 		for(Regra regra : this.regras) {
-			int calculoAtual = regra.executar(this.correto, this.chute, peso);
-			if(calculo < calculoAtual) {
+			Pontos calculoAtual = regra.executar(this.correto, this.chute, peso);
+			if(calculo.compareTo(calculoAtual) < 0 ){
 				calculo = calculoAtual;
 			}
 		}

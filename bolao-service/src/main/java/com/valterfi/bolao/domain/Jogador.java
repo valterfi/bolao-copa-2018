@@ -6,7 +6,7 @@ public class Jogador {
 	 
 	private Placar chute;
 	
-	private int pontos = 0;
+	private Pontos pontos = Pontos.ZERO;
 
 	public Jogador(String nome, Placar chute) {
 		super();
@@ -33,14 +33,12 @@ public class Jogador {
 		this.chute = chute;
 	}
 
-	public int getPontos() {
+	public Pontos getPontos() {
 		return pontos;
 	}
 
-	public void setPontos(int pontos) {
+	public void setPontos(Pontos pontos) {
 		this.pontos = pontos;
 	}
-	
-	
 
 }
