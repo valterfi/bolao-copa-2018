@@ -24,7 +24,6 @@ import com.valterfi.bolao.domain.Simulacao;
 import com.valterfi.bolao.domain.SimulacaoForm;
 import com.valterfi.bolao.domain.util.JogadorUtil;
 import com.valterfi.bolao.service.BolaoService;
-import com.valterfi.bolao.service.MaisBolao;
 
 @Controller
 @SessionAttributes("simulacao")
@@ -81,8 +80,9 @@ public class BolaoController {
     public String simular(Model model, @PathVariable("id") Integer id) {
     	Simulacao simulacao = dataBaseDAO.get(id);
     	List<Classificacao> classificacaoList = bolaoService.retornaClassificacaoAtual(simulacao);
-    	System.out.println(classificacaoList);
-    	model.addAttribute("simulacao", simulacao);
+     	model.addAttribute("simulacao", simulacao);
+    	model.addAttribute("classificacaoList", classificacaoList);
+    	model.addAttribute("id", id);
         return "simular";
     }
 }
