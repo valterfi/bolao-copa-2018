@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	
+	<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.dataTables.min.css">
 </head>
 
 <style>
@@ -37,11 +42,6 @@
 	} );
 </script>
 
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.2/js/dataTables.responsive.min.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.2/css/responsive.dataTables.min.css">
-
 <body>
     <h2 class="hello-title">SIMULAR!</h2>
     
@@ -67,11 +67,14 @@
 						<div class="col-sm-1">
 				        	<input class="form-control" style="text-align:center" name="jogador${indice}Gols1" value="${(jogador.chute.gols1)!}">
 				    	</div>
-				    	<div class="col-sm-1">
+				    	<div class="col-sm-1" style="padding-top:7px">
 				        	<p class="search-input" style="text-align:center">x</p>
 				    	</div>
 				    	<div class="col-sm-1">
 				        	<input class="form-control" style="text-align:center" name="jogador${indice}Gols2" value="${(jogador.chute.gols2)!}">
+				    	</div>
+				    	<div class="col-sm-1" style="padding-top:7px">
+				    		${(jogador.pontos)!} pontos
 				    	</div>
 				    </div>
 				</#list>

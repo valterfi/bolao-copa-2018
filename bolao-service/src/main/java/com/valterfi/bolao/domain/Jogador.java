@@ -3,8 +3,10 @@ package com.valterfi.bolao.domain;
 public class Jogador {
 	
 	private String nome;
-	
+	 
 	private Placar chute;
+	
+	private int pontos = 0;
 
 	public Jogador(String nome, Placar chute) {
 		super();
@@ -29,6 +31,14 @@ public class Jogador {
 
 	public void setChute(Placar chute) {
 		this.chute = chute;
+	}
+
+	public int getPontos() {
+		return pontos;
+	}
+
+	public void setPontos(int pontos) {
+		this.pontos = pontos;
 	}
 	
 	
