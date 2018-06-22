@@ -1,5 +1,6 @@
 package com.valterfi.bolao.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -116,7 +117,9 @@ public class BolaoController {
 	    	ClassificacaoJson json = new ClassificacaoJson(classificacaoList);
 	    	return new ResponseEntity<ClassificacaoJson>(json, HttpStatus.OK);
     	} catch (Exception e) {
-    		return ResponseEntity.badRequest().build();
+    		e.printStackTrace();
+    		ClassificacaoJson json = new ClassificacaoJson(new ArrayList<Classificacao>());
+	    	return new ResponseEntity<ClassificacaoJson>(json, HttpStatus.OK);
 		}
     }
 }

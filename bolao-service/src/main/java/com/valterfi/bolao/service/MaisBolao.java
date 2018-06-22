@@ -11,14 +11,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 //import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 //import org.openqa.selenium.remote.DesiredCapabilities;
 
+import com.valterfi.bolao.database.Cache;
 import com.valterfi.bolao.domain.Classificacao;
 
 @Service
 public class MaisBolao {
+	
+	@Autowired
+	private Cache cache;
 	
 	public List<Classificacao> retornarClassificacao() {
 		 
@@ -47,8 +52,15 @@ public class MaisBolao {
 				
 			}
 		
+		} catch (Exception e) {
+			e.printStackTrace();
+			return cache.getClassificacaoCache().get(Cache.CLASSIFICACAO_LIST);
 		} finally {
 			webDriver.quit();
+		}
+		
+		if (!classificacaoList.isEmpty()) {
+			cache.getClassificacaoCache().put(Cache.CLASSIFICACAO_LIST, classificacaoList);
 		}
 		
 		return classificacaoList;
@@ -121,6 +133,7 @@ public class MaisBolao {
 		return table;
 		
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 
