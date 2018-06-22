@@ -25,19 +25,35 @@
 <script>
 	$(document).ready(function() {
 	
-	    $('#example').DataTable( {
-	        "ajax": "${rc.getContextPath()}/classificacao/${id}",
-	        "columns": [
-	            { "data": "nome" },
-	            { "data": "total" },
-	            { "data": "acertouPlacar" },
-	            { "data": "golsVencedor" },
-	            { "data": "saldoGols" },
-	            { "data": "golsPerdedor" },
-	            { "data": "acertouVencedor" },
-	            { "data": "empateGarantido" }
-	        ]
-	    } );
+		<#if placarExemplo??>
+			$('#example').DataTable( {
+		        "ajax": "${rc.getContextPath()}/classificacao/${id}/${placarExemplo.gols1}/${placarExemplo.gols2}",
+		        "columns": [
+		            { "data": "nome" },
+		            { "data": "total" },
+		            { "data": "acertouPlacar" },
+		            { "data": "golsVencedor" },
+		            { "data": "saldoGols" },
+		            { "data": "golsPerdedor" },
+		            { "data": "acertouVencedor" },
+		            { "data": "empateGarantido" }
+		        ]
+		    } );
+		<#else>
+			$('#example').DataTable( {
+		        "ajax": "${rc.getContextPath()}/classificacao/${id}",
+		        "columns": [
+		            { "data": "nome" },
+		            { "data": "total" },
+		            { "data": "acertouPlacar" },
+		            { "data": "golsVencedor" },
+		            { "data": "saldoGols" },
+		            { "data": "golsPerdedor" },
+		            { "data": "acertouVencedor" },
+		            { "data": "empateGarantido" }
+		        ]
+		    } );
+		</#if>
 	    
 	} );
 </script>

@@ -87,6 +87,7 @@ public class BolaoController {
 	    	model.addAttribute("placarAtual", placarExemplo);
 	     	model.addAttribute("simulacao", simulacao);
 	    	model.addAttribute("id", id);
+	    	model.addAttribute("placarExemplo", placarExemplo);
 	        return "simular";
     	}
     	return "index";
@@ -94,10 +95,28 @@ public class BolaoController {
     
     @GetMapping(path = "/classificacao/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
     public  ResponseEntity<ClassificacaoJson> getClassificacao(@PathVariable("id") Integer id) {
-    	Simulacao simulacao = dataBaseDAO.get(id);
-    	List<Classificacao> classificacaoList = bolaoService.retornaClassificacaoAtual(simulacao);
-    	bolaoService.calcularClassificacaoAtual(classificacaoList, simulacao);
-    	ClassificacaoJson json = new ClassificacaoJson(classificacaoList);
-    	return new ResponseEntity<ClassificacaoJson>(json, HttpStatus.OK);
+    	try {
+	    	Simulacao simulacao = dataBaseDAO.get(id);
+	    	List<Classificacao> classificacaoList = bolaoService.retornaClassificacaoAtual(simulacao);
+	    	bolaoService.calcularClassificacaoAtual(classificacaoList, simulacao, bolaoService.getPlacarAtual());
+	    	ClassificacaoJson json = new ClassificacaoJson(classificacaoList);
+	    	return new ResponseEntity<ClassificacaoJson>(json, HttpStatus.OK);
+    	} catch (Exception e) {
+    		return ResponseEntity.badRequest().build();
+		}
+    }
+    
+    @GetMapping(path = "/classificacao/{id}/{gols1}/{gols2}", produces=MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<ClassificacaoJson> getClassificacao(@PathVariable("id") Integer id, @PathVariable("gols1") Integer gols1, @PathVariable("gols2") Integer gols2) {
+    	try {
+	    	Simulacao simulacao = dataBaseDAO.get(id);
+	    	List<Classificacao> classificacaoList = bolaoService.retornaClassificacaoAtual(simulacao);
+	    	Placar placarExemplo = Placar.palpitar(gols1, gols2);
+	    	bolaoService.calcularClassificacaoAtual(classificacaoList, simulacao, placarExemplo);
+	    	ClassificacaoJson json = new ClassificacaoJson(classificacaoList);
+	    	return new ResponseEntity<ClassificacaoJson>(json, HttpStatus.OK);
+    	} catch (Exception e) {
+    		return ResponseEntity.badRequest().build();
+		}
     }
 }

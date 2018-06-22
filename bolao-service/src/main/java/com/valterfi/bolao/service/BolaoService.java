@@ -34,8 +34,7 @@ public class BolaoService {
 		return maisBolao.retornarClassificacao();
 	}
 	
-	public void calcularClassificacaoAtual(List<Classificacao> classificacaoList, Simulacao simulacao) {
-		Placar placarAtual = getPlacarAtual();
+	public void calcularClassificacaoAtual(List<Classificacao> classificacaoList, Simulacao simulacao, Placar placarAtual) {
 		calcularPontos(simulacao, placarAtual);
 		
 		for(Jogador jogador : simulacao.getJogadores()) {
